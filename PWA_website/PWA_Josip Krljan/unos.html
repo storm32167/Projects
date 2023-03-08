@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AKCIJA.hr</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta charset="UTF-8"/>
+</head>
+
+<body>
+	<div class="container">
+	<header>
+		<img src="cartlogo.png"/>
+	</div>
+	<nav>
+		<div class="container">
+		<ul>
+		
+		<li><a href="index.html"><b>Početna</b></a></li>
+		<li><a href="onama.html"><b>O nama</b></a></li>
+		<li><a href="https://www.tvz.hr"><b>TVZ<b></a></li>
+		<li><a href="unos.html"><b>Unos<b></a></li>
+		<li><a href="proizvodi.php"><b>Proizvodi</b></a></li>
+		<li><a href="administrator.php"><b>Administrator</b></a></li>
+		<li><a href="rezervacija.html"><b>Registracija</b></a></li>
+		<li><a href="prijava.html"><b>Prijava</b></a></li>
+		</ul>
+		</div>
+	</nav>
+	</div>
+	<div class="clear"></div>
+	
+	
+		
+	
+	
+		<main>
+		<section style="height:600px;">
+			<div class="forma">
+				<h2>Unos novog proizvoda</h2></br>
+					<form name="unosProizvoda" enctype="multipart/form-data" action="skripta.php" method="POST">
+					<span id="porukaNazivProizvoda"></span></br>
+					<label for="nazivProizvoda"></label>
+					<input type="text" name="nazivProizvoda" id="nazivProizvoda" placeholder="Naziv proizvoda"/>
+					<br></br>
+					<span id="porukaSifraProizvoda"></span></br>
+					<label for="sifraProizvoda"></label>
+					<input type="text" name="sifraProizvoda" id="sifraProizvoda" placeholder="Šifra proizvoda"/>
+					<br></br>
+					<span id="porukaKategorijaProizvoda"></span>
+					<label for="kategorijaProizvoda"></label>
+					<select name="kategorijaProizvoda" id="kategorijaProizvoda">
+						<option value="" disabled selected>Odabir kategorije</option>
+						<option value="skupi">Akcija</option>
+						<option value="jeftini">Super akcija</option>
+						<option value="probni">Mega akcija</option>
+					</select>
+					<br></br>
+					<span id="porukaOpisProizvoda"></span></br>
+					<label for="opisProizvoda"></label>
+					<textarea name="opisProizvoda" id="opisProizvoda" placeholder="Opis proizvoda" rows="5" cols="30"></textarea>
+					</br></br>
+					<span id="porukaCijenaProizvoda"></span>
+					<label for="cijenaProizvoda"></label>
+					<input type="text" name="cijenaProizvoda" id="cijenaProizvoda" placeholder="Cijena proizvoda"/>
+					</br></br>
+					<input type="hidden" name="MAX_FILE_SIZE" value="1048576"/></br>
+					<label for="slikaProizvoda"></label>
+					<input type="file" name="slikaProizvoda" id="slikaProizvoda"/>
+					<br></br>
+					<input type="checkbox" name="arhivirajProizvod" id="arhivirajProizvod"/>
+					<label for="arhivirajProizvod">Arhiviraj proizvod</label>
+					<br></br>
+					<input type="submit" id="slanje" value="Pošalji">
+					</form>
+			</div>
+		</section>
+		
+			
+		
+		
+		</main>
+			<div class="omot">
+			<main>
+			<footer>
+				<h2>O stranici</h2>
+				
+				</br>
+				<p>Kolegij: PWA</p>
+				<p>Tehničko Veleučilište u Zagrebu</p>
+				<p>Smjer: Informatizacija i organizacija ureda</p>
+				<p>Student: Josip Krljan</p>
+				<p>E-mail: <a href="mailto:jkrljan@tvz.hr?Subject=Upit" target="_blank">jkrljan@tvz.hr</a></p>
+				<p>Godina: 2018.</p>
+			</footer>
+			
+		</div>
+		</main>
+		
+		
+		<script>
+		
+		// Provjera forme prije slanja
+		document.getElementById("slanje").onclick = function(event) {
+			
+			var slanjeForme = true;
+			
+			// Naziv proizvoda (5-30 znakova)
+			var poljeNazivProizvoda = document.getElementById("nazivProizvoda");
+			var nazivProizvoda = document.getElementById("nazivProizvoda").value;
+			if (nazivProizvoda.length < 5 || nazivProizvoda.length > 30) {
+				slanjeForme = false;
+				poljeNazivProizvoda.style.border="1px dashed red";
+				document.getElementById("porukaNazivProizvoda").innerHTML="Naziv proizvoda mora imati između 5 i 30 znakova!";
+			} else {
+				poljeNazivProizvoda.style.border="1px solid black";
+				document.getElementById("porukaNazivProizvoda").innerHTML="";
+			}
+			
+			// Opis proizvoda (10-100 znakova)
+			var poljeOpisProizvoda = document.getElementById("opisProizvoda");
+			var opisProizvoda = document.getElementById("opisProizvoda").value;
+			if (opisProizvoda.length < 5 || opisProizvoda.length > 30) {
+				slanjeForme = false;
+				poljeOpisProizvoda.style.border="1px dashed red";
+				document.getElementById("porukaOpisProizvoda").innerHTML="Opis proizvoda mora imati između 10 i 100 znakova!";
+			} else {
+				poljeOpisProizvoda.style.border="1px solid black";
+				document.getElementById("porukaOpisProizvoda").innerHTML="";
+			}
+			
+			// Šifra proizvoda (10 znakova)
+			var poljeSifraProizvoda = document.getElementById("sifraProizvoda");
+			var sifraProizvoda = document.getElementById("sifraProizvoda").value;
+			if (sifraProizvoda.length != 10) {
+				slanjeForme = false;
+				poljeSifraProizvoda.style.border="1px dashed red";
+				document.getElementById("porukaSifraProizvoda").innerHTML="Šifra proizvoda mora imati imati 10 znakova!";
+			} else {
+				poljeSifraProizvoda.style.border="1px solid black";
+				document.getElementById("porukaSifraProizvoda").innerHTML="";
+			}
+			
+			// Cijena mora biti unesena
+			var poljeCijenaProizvoda = document.getElementById("cijenaProizvoda");
+			var cijenaProizvoda = document.getElementById("cijenaProizvoda").value;
+			if (cijenaProizvoda.length == 0) {
+				slanjeForme = false;
+				poljeCijenaProizvoda.style.border="1px dashed red";
+				document.getElementById("porukaCijenaProizvoda").innerHTML="Cijena mora biti unesena!<br>";
+			} else {
+				poljeCijenaProizvoda.style.border="1px solid black)";
+				document.getElementById("porukaCijenaProizvoda").innerHTML="";
+			}
+			
+			// Kategorija mora biti odabrana
+			var poljeKategorijaProizvoda = document.getElementById("kategorijaProizvoda");
+			if(document.getElementById("kategorijaProizvoda").selectedIndex == 0) {
+				slanjeForme = false;
+				poljeKategorijaProizvoda.style.border="1px dashed red";
+				document.getElementById("porukaKategorijaProizvoda").innerHTML="Kategorija mora biti odabrana!<br>";
+			} else {
+				poljeKategorijaProizvoda.style.border="1px solid black";
+				document.getElementById("porukaKategorijaProizvoda").innerHTML="";
+			}
+			
+			if (slanjeForme != true) {
+				event.preventDefault();
+			}
+			
+		};
+		
+		// Upozorenje za arhiviranje
+		document.getElementById("arhivirajProizvod").onclick = function() {
+			
+			if (document.getElementById("arhivirajProizvod").checked == true) {
+			
+				var potvrda = confirm("Jeste li sigurni da želite arhivirati proizvod?");
+				if (potvrda == false) {
+					document.getElementById("arhivirajProizvod").checked = false;
+				} else {
+					document.getElementById("arhivirajProizvod").checked = true;
+				}
+			
+			}
+			
+		};
+		
+	</script>
+
+</body>
+</html>
